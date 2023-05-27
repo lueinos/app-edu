@@ -38,7 +38,7 @@ class _Fase4State extends State<Fase4> {
                 onTap: () {
                   if (qtd_lapis == 4) {
                     globals.fase = 4;
-                    Navigator.pushNamed(context, "/");
+                    Navigator.pushNamed(context, "/home");
                   }
                 },
                 child: Padding(
@@ -54,7 +54,7 @@ class _Fase4State extends State<Fase4> {
                 ))),
         body: Stack(children: <Widget>[
           Container(
-            margin: const EdgeInsets.all(15.0),
+            margin: const EdgeInsets.all(10.0),
             padding: const EdgeInsets.all(3.0),
             //alignment: Alignment.center,
             child: Column(children: <Widget>[

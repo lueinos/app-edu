@@ -1,6 +1,8 @@
 // import 'package:flutter/material.dart';
 
 import 'dart:math';
+
+import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 
 import 'globals.dart' as globals;
@@ -12,10 +14,12 @@ class Fase1 extends StatefulWidget {
   _Fase1State createState() => _Fase1State();
 }
 
-GlobalKey<ScaffoldState> scaffoldKey = new GlobalKey();
+GlobalKey<ScaffoldState> scaffoldKey = GlobalKey();
 
 class _Fase1State extends State<Fase1> {
-  List<String> _formas = [
+
+
+  final List<String> _formas = [
     "assets/imagens/circulo.png",
     "assets/imagens/coracao.png",
     "assets/imagens/estrela.png",
@@ -23,37 +27,49 @@ class _Fase1State extends State<Fase1> {
     "assets/imagens/nuvem.png",
     "assets/imagens/pentagono.png",
     "assets/imagens/quadrado.png",
-    "assets/imagens/Triangulo.png",
+    "assets/imagens/triangulo.png",
   ];
 
-  int _aleatorio1 = Random().nextInt(7);
-  int _aleatorio2 = Random().nextInt(7);
-  int _aleatorio3 = Random().nextInt(7);
+  final int _aleatorio1 = Random().nextInt(8);
+  final int _aleatorio2 = Random().nextInt(8);
+  final int _aleatorio3 = Random().nextInt(8);
 
   bool _isForma1Dropped = false;
   bool _isForma2Dropped = false;
   bool _isForma3Dropped = false;
 
+  final _player = AudioPlayer();
+
+
   int qtd_forma = 0;
 
   @override
   Widget build(BuildContext context) {
+
+  void executar(String nomeAudio) async {
+    await _player.setSource(AssetSource('audios/$nomeAudio.mp3'));
+    await _player.play(AssetSource('audios/$nomeAudio.mp3'));
+  }
+  void executarW(String nomeAudio) async {
+    await _player.setSource(AssetSource('audios/$nomeAudio.wav'));
+    await _player.play(AssetSource('audios/$nomeAudio.wav'));
+  }
     return SafeArea(
       child: Scaffold(
-        backgroundColor: Color(0xFFd6d9f8),
+        backgroundColor: const Color(0xFFd6d9f8),
         appBar: AppBar(
-            title: const Text("Fase 1",
-                style: const TextStyle(color: Colors.black)),
-            backgroundColor: Color(0xFFd6d9f8),
+            title: const Text("Fase 1", style: TextStyle(color: Colors.black)),
+            backgroundColor: const Color(0xFFd6d9f8),
             flexibleSpace: GestureDetector(
                 onTap: () {
                   if (qtd_forma == 3) {
                     globals.fase = 2;
-                    Navigator.pushNamed(context, "/");
+                    Navigator.pushNamed(context, "/home");
                   }
                 },
+                
                 child: Padding(
-                  padding: EdgeInsets.all(5.0),
+                  padding: const EdgeInsets.all(5.0),
                   child: Align(
                     alignment: Alignment.bottomRight,
                     child: Image.asset(
@@ -79,8 +95,8 @@ class _Fase1State extends State<Fase1> {
                             padding: const EdgeInsets.all(3.0),
                             decoration: BoxDecoration(
                                 border: Border.all(color: Colors.black),
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(20))),
+                                borderRadius: const BorderRadius.all(
+                                    Radius.circular(20))),
                             child: Row(
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceEvenly,
@@ -132,7 +148,13 @@ class _Fase1State extends State<Fase1> {
                                           ),
                                         );
                                       },
+                                      
                                       onWillAccept: (data) {
+                                        if (_formas[_aleatorio1] != data) {
+                                          executar("error");
+                                        } else {
+                                          executarW("acertou");
+                                        }
                                         return _formas[_aleatorio1] == data;
                                       },
                                       onAccept: (data) {
@@ -141,6 +163,7 @@ class _Fase1State extends State<Fase1> {
                                           _isForma1Dropped = true;
                                         });
                                       },
+                                      
                                     ),
                                     DragTarget<String>(
                                       builder: (
@@ -440,11 +463,11 @@ class _Fase1State extends State<Fase1> {
                                 ),
                                 Draggable<String>(
                                   // Data is the value this Draggable stores.
-                                  data: 'assets/imagens/Triangulo.png',
+                                  data: 'assets/imagens/triangulo.png',
                                   child: Container(
                                     child: Center(
                                       child: Image.asset(
-                                        'assets/imagens/Triangulo.png',
+                                        'assets/imagens/triangulo.png',
                                         height:
                                             MediaQuery.of(context).size.height *
                                                 0.15,
@@ -457,7 +480,7 @@ class _Fase1State extends State<Fase1> {
                                   feedback: Container(
                                     child: Center(
                                       child: Image.asset(
-                                        'assets/imagens/Triangulo.png',
+                                        'assets/imagens/triangulo.png',
                                         height:
                                             MediaQuery.of(context).size.height *
                                                 0.15,

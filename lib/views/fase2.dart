@@ -51,7 +51,7 @@ class _Fase2State extends State<Fase2> {
                 onTap: () {
                   if (qtdBolinhas == 15) {
                     globals.fase = 3;
-                    Navigator.pushNamed(context, "/");
+                    Navigator.pushNamed(context, "/home");
                   }
                 },
                 child: Padding(
@@ -67,7 +67,7 @@ class _Fase2State extends State<Fase2> {
                 ))),
         body: Stack(children: <Widget>[
           Container(
-            margin: const EdgeInsets.all(15.0),
+            margin: const EdgeInsets.all(10.0),
             padding: const EdgeInsets.all(3.0),
             child: Column(children: <Widget>[
               Align(
