@@ -2,8 +2,8 @@
 
 import 'dart:math';
 
-import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
+import 'package:audioplayers/audioplayers.dart';
 
 import 'globals.dart' as globals;
 
@@ -188,6 +188,11 @@ class _Fase1State extends State<Fase1> {
                                         );
                                       },
                                       onWillAccept: (data) {
+                                        if (_formas[_aleatorio2] != data) {
+                                          executar("error");
+                                        } else {
+                                          executarW("acertou");
+                                        }
                                         return _formas[_aleatorio2] == data;
                                       },
                                       onAccept: (data) {
@@ -220,6 +225,11 @@ class _Fase1State extends State<Fase1> {
                                         );
                                       },
                                       onWillAccept: (data) {
+                                        if (_formas[_aleatorio3] != data) {
+                                          executar("error");
+                                        } else {
+                                          executarW("acertou");
+                                        }
                                         return _formas[_aleatorio3] == data;
                                       },
                                       onAccept: (data) {

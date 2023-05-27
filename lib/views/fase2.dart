@@ -1,5 +1,6 @@
 // import 'package:flutter/material.dart';
 
+import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'globals.dart' as globals;
 
@@ -9,6 +10,8 @@ class Fase2 extends StatefulWidget {
   @override
   _Fase2State createState() => _Fase2State();
 }
+
+final _player = AudioPlayer();
 
 GlobalKey<ScaffoldState> scaffoldKey = GlobalKey();
 
@@ -41,6 +44,16 @@ class _Fase2State extends State<Fase2> {
 
   @override
   Widget build(BuildContext context) {
+    void executar(String nomeAudio) async {
+      await _player.setSource(AssetSource('audios/$nomeAudio.mp3'));
+      await _player.play(AssetSource('audios/$nomeAudio.mp3'));
+    }
+
+    void executarW(String nomeAudio) async {
+      await _player.setSource(AssetSource('audios/$nomeAudio.wav'));
+      await _player.play(AssetSource('audios/$nomeAudio.wav'));
+    }
+
     return SafeArea(
       child: Scaffold(
         backgroundColor: const Color(0xFFd3e6ed),
@@ -607,6 +620,11 @@ class _Fase2State extends State<Fase2> {
                                   );
                                 },
                                 onWillAccept: (data) {
+                                  if (!_azuls.contains(data)) {
+                                    executar("error");
+                                  } else {
+                                    executarW("acertou");
+                                  }
                                   return _azuls.contains(data);
                                   //return data == _azul;
                                 },
@@ -651,6 +669,11 @@ class _Fase2State extends State<Fase2> {
                                   );
                                 },
                                 onWillAccept: (data) {
+                                  if (!_vermelhos.contains(data)) {
+                                    executar("error");
+                                  } else {
+                                    executarW("acertou");
+                                  }
                                   //return data == _vermelho;
                                   return _vermelhos.contains(data);
                                 },
@@ -695,6 +718,11 @@ class _Fase2State extends State<Fase2> {
                                   );
                                 },
                                 onWillAccept: (data) {
+                                  if (!_amarelos.contains(data)) {
+                                    executar("error");
+                                  } else {
+                                    executarW("acertou");
+                                  }
                                   return _amarelos.contains(data);
                                   //return data == _amarelo;
                                 },

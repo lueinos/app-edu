@@ -211,7 +211,7 @@ class _HomeState extends State<Home>
           ),
         ),
         onWillPop: () async {
-          Navigator.pushNamed(context, '/home');
+          Navigator.pushNamed(context, '/');
           return true;
         });
   }

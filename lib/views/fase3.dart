@@ -1,5 +1,6 @@
 // import 'package:flutter/material.dart';
 
+import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'globals.dart' as globals;
 
@@ -11,6 +12,8 @@ class Fase3 extends StatefulWidget {
 }
 
 GlobalKey<ScaffoldState> scaffoldKey = GlobalKey();
+
+final _player = AudioPlayer();
 
 class _Fase3State extends State<Fase3> {
   final List<String> _papels = ["P1", "P2", "P3"];
@@ -46,6 +49,16 @@ class _Fase3State extends State<Fase3> {
 
   @override
   Widget build(BuildContext context) {
+    void executar(String nomeAudio) async {
+      await _player.setSource(AssetSource('audios/$nomeAudio.mp3'));
+      await _player.play(AssetSource('audios/$nomeAudio.mp3'));
+    }
+
+    void executarW(String nomeAudio) async {
+      await _player.setSource(AssetSource('audios/$nomeAudio.wav'));
+      await _player.play(AssetSource('audios/$nomeAudio.wav'));
+    }
+
     return SafeArea(
       child: Scaffold(
         backgroundColor: const Color(0xFFFFCB99),
@@ -581,6 +594,11 @@ class _Fase3State extends State<Fase3> {
                                   );
                                 },
                                 onWillAccept: (data) {
+                                  if (!_papels.contains(data)) {
+                                    executar("error");
+                                  } else {
+                                    executarW("acertou");
+                                  }
                                   return _papels.contains(data);
                                   //return data == _azul;
                                 },
@@ -619,6 +637,11 @@ class _Fase3State extends State<Fase3> {
                                   );
                                 },
                                 onWillAccept: (data) {
+                                  if (!_plasticos.contains(data)) {
+                                    executar("error");
+                                  } else {
+                                    executarW("acertou");
+                                  }
                                   //return data == _vermelho;
                                   return _plasticos.contains(data);
                                 },
@@ -654,6 +677,11 @@ class _Fase3State extends State<Fase3> {
                                   );
                                 },
                                 onWillAccept: (data) {
+                                  if (!_vidros.contains(data)) {
+                                    executar("error");
+                                  } else {
+                                    executarW("acertou");
+                                  }
                                   return _vidros.contains(data);
                                   //return data == _amarelo;
                                 },
@@ -692,6 +720,11 @@ class _Fase3State extends State<Fase3> {
                                   );
                                 },
                                 onWillAccept: (data) {
+                                  if (!_metals.contains(data)) {
+                                    executar("error");
+                                  } else {
+                                    executarW("acertou");
+                                  }
                                   return _metals.contains(data);
                                   //return data == _amarelo;
                                 },
@@ -730,6 +763,11 @@ class _Fase3State extends State<Fase3> {
                                   );
                                 },
                                 onWillAccept: (data) {
+                                  if (!_organicos.contains(data)) {
+                                    executar("error");
+                                  } else {
+                                    executarW("acertou");
+                                  }
                                   return _organicos.contains(data);
                                   //return data == _amarelo;
                                 },

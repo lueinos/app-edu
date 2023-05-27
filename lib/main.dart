@@ -9,7 +9,7 @@ void main() {
       [DeviceOrientation.landscapeRight, DeviceOrientation.landscapeLeft]).then(
     (_) => runApp(const MaterialApp(
       debugShowCheckedModeBanner: false,
-      initialRoute: "/",
+      initialRoute: "/home",
       onGenerateRoute: RouteGenerator.generateRoute,
     )),
   );

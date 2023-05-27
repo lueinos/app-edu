@@ -1,5 +1,6 @@
 // import 'package:flutter/material.dart';
 
+import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'globals.dart' as globals;
 
@@ -24,9 +25,20 @@ class _Fase4State extends State<Fase4> {
   bool _isNum4Dropped = false;
 
   int qtd_lapis = 0;
+  final _player = AudioPlayer();
 
   @override
   Widget build(BuildContext context) {
+    void executar(String nomeAudio) async {
+      await _player.setSource(AssetSource('audios/$nomeAudio.mp3'));
+      await _player.play(AssetSource('audios/$nomeAudio.mp3'));
+    }
+
+    void executarW(String nomeAudio) async {
+      await _player.setSource(AssetSource('audios/$nomeAudio.wav'));
+      await _player.play(AssetSource('audios/$nomeAudio.wav'));
+    }
+
     return SafeArea(
       child: Scaffold(
         backgroundColor: Color(0xFFF2CAD3),
@@ -350,6 +362,11 @@ class _Fase4State extends State<Fase4> {
                               );
                             },
                             onWillAccept: (data) {
+                              if (data != _num4) {
+                                executar("error");
+                              } else {
+                                executarW("acertou");
+                              }
                               return data == _num4;
                             },
                             onAccept: (data) {
@@ -376,6 +393,11 @@ class _Fase4State extends State<Fase4> {
                               );
                             },
                             onWillAccept: (data) {
+                              if (data != _num3) {
+                                executar("error");
+                              } else {
+                                executarW("acertou");
+                              }
                               return data == _num3;
                             },
                             onAccept: (data) {
@@ -402,6 +424,11 @@ class _Fase4State extends State<Fase4> {
                               );
                             },
                             onWillAccept: (data) {
+                              if (data != _num2) {
+                                executar("error");
+                              } else {
+                                executarW("acertou");
+                              }
                               return data == _num2;
                             },
                             onAccept: (data) {
@@ -428,6 +455,11 @@ class _Fase4State extends State<Fase4> {
                               );
                             },
                             onWillAccept: (data) {
+                              if (data != _num1) {
+                                executar("error");
+                              } else {
+                                executarW("acertou");
+                              }
                               return data == _num1;
                             },
                             onAccept: (data) {

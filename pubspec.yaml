@@ -128,6 +128,8 @@ flutter:
     - assets/imagens/lapis_4.png
     - assets/imagens/preenchimento_num.png
     - assets/audios/musica_bg.mp3
+    - assets/audios/error.mp3
+    - assets/audios/acertou.wav
     
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
