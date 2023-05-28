@@ -421,7 +421,7 @@ class _Fase4State extends State<Fase4> {
                                                       Navigator.of(context)
                                                           .pop();
                                                     },
-                                                    child: const Text("Close"),
+                                                    child: const Text("Fechar"),
                                                   )
                                                 ],
                                               ),
@@ -544,7 +544,7 @@ class _Fase4State extends State<Fase4> {
                                                       Navigator.of(context)
                                                           .pop();
                                                     },
-                                                    child: const Text("Close"),
+                                                    child: const Text("Fechar"),
                                                   )
                                                 ],
                                               ),
@@ -667,7 +667,7 @@ class _Fase4State extends State<Fase4> {
                                                       Navigator.of(context)
                                                           .pop();
                                                     },
-                                                    child: const Text("Close"),
+                                                    child: const Text("Fechar"),
                                                   )
                                                 ],
                                               ),
@@ -790,7 +790,7 @@ class _Fase4State extends State<Fase4> {
                                                       Navigator.of(context)
                                                           .pop();
                                                     },
-                                                    child: const Text("Close"),
+                                                    child: const Text("Fechar"),
                                                   )
                                                 ],
                                               ),

@@ -668,7 +668,7 @@ class _Fase3State extends State<Fase3> {
                                                             .pop();
                                                       },
                                                       child:
-                                                          const Text("Close"),
+                                                          const Text("Fechar"),
                                                     )
                                                   ],
                                                 ),
@@ -806,7 +806,7 @@ class _Fase3State extends State<Fase3> {
                                                             .pop();
                                                       },
                                                       child:
-                                                          const Text("Close"),
+                                                          const Text("Fechar"),
                                                     )
                                                   ],
                                                 ),
@@ -947,7 +947,7 @@ class _Fase3State extends State<Fase3> {
                                                             .pop();
                                                       },
                                                       child:
-                                                          const Text("Close"),
+                                                          const Text("Fechar"),
                                                     )
                                                   ],
                                                 ),
@@ -1088,7 +1088,7 @@ class _Fase3State extends State<Fase3> {
                                                             .pop();
                                                       },
                                                       child:
-                                                          const Text("Close"),
+                                                          const Text("Fechar"),
                                                     )
                                                   ],
                                                 ),
@@ -1229,7 +1229,7 @@ class _Fase3State extends State<Fase3> {
                                                             .pop();
                                                       },
                                                       child:
-                                                          const Text("Close"),
+                                                          const Text("Fechar"),
                                                     )
                                                   ],
                                                 ),

@@ -208,7 +208,7 @@ class _Fase1State extends State<Fase1> {
                                                             .pop();
                                                       },
                                                       child:
-                                                          const Text("Close"),
+                                                          const Text("Fechar"),
                                                     )
                                                   ],
                                                 ),
@@ -335,7 +335,7 @@ class _Fase1State extends State<Fase1> {
                                                       Navigator.of(context)
                                                           .pop();
                                                     },
-                                                    child: const Text("Close"),
+                                                    child: const Text("Fechar"),
                                                   )
                                                 ],
                                               ),
@@ -468,7 +468,7 @@ class _Fase1State extends State<Fase1> {
                                                             .pop();
                                                       },
                                                       child:
-                                                          const Text("Close"),
+                                                          const Text("Fechar"),
                                                     )
                                                   ],
                                                 ),

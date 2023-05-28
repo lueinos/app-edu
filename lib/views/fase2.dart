@@ -702,7 +702,7 @@ class _Fase2State extends State<Fase2> {
                                                             .pop();
                                                       },
                                                       child:
-                                                          const Text("Close"),
+                                                          const Text("Fechar"),
                                                     )
                                                   ],
                                                 ),
@@ -849,7 +849,7 @@ class _Fase2State extends State<Fase2> {
                                                             .pop();
                                                       },
                                                       child:
-                                                          const Text("Close"),
+                                                          const Text("Fechar"),
                                                     )
                                                   ],
                                                 ),
@@ -998,7 +998,7 @@ class _Fase2State extends State<Fase2> {
                                                             .pop();
                                                       },
                                                       child:
-                                                          const Text("Close"),
+                                                          const Text("Fechar"),
                                                     )
                                                   ],
                                                 ),
