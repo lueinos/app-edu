@@ -94,7 +94,7 @@ class HomePage extends StatelessWidget {
                   ),
                 ),
                 child: const Text(
-                  'Play',
+                  'Jogar',
                   style: TextStyle(
                     fontSize: 18,
                     fontWeight: FontWeight.bold,
