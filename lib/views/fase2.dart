@@ -1,6 +1,7 @@
 // import 'package:flutter/material.dart';
 
 import 'package:audioplayers/audioplayers.dart';
+import 'package:confetti/confetti.dart';
 import 'package:flutter/material.dart';
 import 'globals.dart' as globals;
 
@@ -12,6 +13,11 @@ class Fase2 extends StatefulWidget {
 }
 
 final _player = AudioPlayer();
+
+ConfettiController _controllerCenter =
+    ConfettiController(duration: const Duration(seconds: 10));
+ConfettiController _controllerCenter2 =
+    ConfettiController(duration: const Duration(seconds: 10));
 
 GlobalKey<ScaffoldState> scaffoldKey = GlobalKey();
 
@@ -63,7 +69,9 @@ class _Fase2State extends State<Fase2> {
             flexibleSpace: GestureDetector(
                 onTap: () {
                   if (qtdBolinhas == 15) {
-                    globals.fase = 3;
+                    if (globals.fase < 3) {
+                      globals.fase = 3;
+                    }
                     Navigator.pushNamed(context, "/home");
                   }
                 },
@@ -628,25 +636,125 @@ class _Fase2State extends State<Fase2> {
                                   return _azuls.contains(data);
                                   //return data == _azul;
                                 },
-                                onAccept: (data) {
-                                  setState(() {
-                                    if (_azuls.indexOf(data) == 0) {
-                                      qtdBolinhas = qtdBolinhas + 1;
-                                      _isAzul1Dropped = true;
-                                    } else if (_azuls.indexOf(data) == 1) {
-                                      qtdBolinhas = qtdBolinhas + 1;
-                                      _isAzul2Dropped = true;
-                                    } else if (_azuls.indexOf(data) == 2) {
-                                      qtdBolinhas = qtdBolinhas + 1;
-                                      _isAzul3Dropped = true;
-                                    } else if (_azuls.indexOf(data) == 3) {
-                                      qtdBolinhas = qtdBolinhas + 1;
-                                      _isAzul4Dropped = true;
-                                    } else if (_azuls.indexOf(data) == 4) {
-                                      qtdBolinhas = qtdBolinhas + 1;
-                                      _isAzul5Dropped = true;
-                                    }
-                                  });
+                                onAccept: (data) async {
+                                  setState(
+                                    () {
+                                      if (_azuls.indexOf(data) == 0) {
+                                        qtdBolinhas = qtdBolinhas + 1;
+                                        _isAzul1Dropped = true;
+                                      } else if (_azuls.indexOf(data) == 1) {
+                                        qtdBolinhas = qtdBolinhas + 1;
+                                        _isAzul2Dropped = true;
+                                      } else if (_azuls.indexOf(data) == 2) {
+                                        qtdBolinhas = qtdBolinhas + 1;
+                                        _isAzul3Dropped = true;
+                                      } else if (_azuls.indexOf(data) == 3) {
+                                        qtdBolinhas = qtdBolinhas + 1;
+                                        _isAzul4Dropped = true;
+                                      } else if (_azuls.indexOf(data) == 4) {
+                                        qtdBolinhas = qtdBolinhas + 1;
+                                        _isAzul5Dropped = true;
+                                      }
+                                    },
+                                  );
+                                  if (qtdBolinhas == 15) {
+                                    _controllerCenter.play();
+                                    _controllerCenter2.play();
+                                    await showDialog(
+                                      context: context,
+                                      builder: (BuildContext context) {
+                                        return Dialog(
+                                          child: Container(
+                                            height: 300,
+                                            child: Stack(
+                                              children: [
+                                                Column(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment
+                                                          .spaceBetween,
+                                                  children: [
+                                                    Image.asset(
+                                                      'assets/imagens/porco_parab.png',
+                                                      height:
+                                                          MediaQuery.of(context)
+                                                                  .size
+                                                                  .height *
+                                                              0.45,
+                                                      width:
+                                                          MediaQuery.of(context)
+                                                                  .size
+                                                                  .width *
+                                                              0.5,
+                                                    ),
+                                                    const Text(
+                                                      "Você Conseguiu!!!",
+                                                      style: TextStyle(
+                                                        fontSize: 20,
+                                                      ),
+                                                    ),
+                                                    ElevatedButton(
+                                                      onPressed: () {
+                                                        _controllerCenter
+                                                            .stop();
+                                                        _controllerCenter2
+                                                            .stop();
+                                                        Navigator.of(context)
+                                                            .pop();
+                                                      },
+                                                      child:
+                                                          const Text("Close"),
+                                                    )
+                                                  ],
+                                                ),
+                                                ConfettiWidget(
+                                                  confettiController:
+                                                      _controllerCenter2,
+                                                  blastDirectionality:
+                                                      BlastDirectionality
+                                                          .explosive,
+                                                  shouldLoop: true,
+                                                  numberOfParticles: 20,
+                                                  colors: const [
+                                                    Colors.green,
+                                                    Colors.blue,
+                                                    Colors.pink,
+                                                    Colors.orange,
+                                                    Colors.purple
+                                                  ],
+                                                ),
+                                                Positioned(
+                                                  right: MediaQuery.of(context)
+                                                          .size
+                                                          .width /
+                                                      2,
+                                                  left: MediaQuery.of(context)
+                                                          .size
+                                                          .width /
+                                                      2,
+                                                  child: ConfettiWidget(
+                                                    confettiController:
+                                                        _controllerCenter,
+                                                    blastDirectionality:
+                                                        BlastDirectionality
+                                                            .explosive,
+                                                    shouldLoop: true,
+                                                    numberOfParticles: 10,
+                                                    colors: const [
+                                                      Colors.green,
+                                                      Colors.blue,
+                                                      Colors.pink,
+                                                      Colors.orange,
+                                                      Colors.purple
+                                                    ],
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                        );
+                                      },
+                                    );
+                                  }
                                 },
                               ),
                               DragTarget<String>(
@@ -677,7 +785,7 @@ class _Fase2State extends State<Fase2> {
                                   //return data == _vermelho;
                                   return _vermelhos.contains(data);
                                 },
-                                onAccept: (data) {
+                                onAccept: (data) async {
                                   setState(() {
                                     if (_vermelhos.indexOf(data) == 0) {
                                       qtdBolinhas = qtdBolinhas + 1;
@@ -696,6 +804,104 @@ class _Fase2State extends State<Fase2> {
                                       _isVermelho5Dropped = true;
                                     }
                                   });
+                                  if (qtdBolinhas == 15) {
+                                    _controllerCenter.play();
+                                    _controllerCenter2.play();
+                                    await showDialog(
+                                      context: context,
+                                      builder: (BuildContext context) {
+                                        return Dialog(
+                                          child: Container(
+                                            height: 300,
+                                            child: Stack(
+                                              children: [
+                                                Column(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment
+                                                          .spaceBetween,
+                                                  children: [
+                                                    Image.asset(
+                                                      'assets/imagens/porco_parab.png',
+                                                      height:
+                                                          MediaQuery.of(context)
+                                                                  .size
+                                                                  .height *
+                                                              0.45,
+                                                      width:
+                                                          MediaQuery.of(context)
+                                                                  .size
+                                                                  .width *
+                                                              0.5,
+                                                    ),
+                                                    const Text(
+                                                      "Você Conseguiu!!!",
+                                                      style: TextStyle(
+                                                        fontSize: 20,
+                                                      ),
+                                                    ),
+                                                    ElevatedButton(
+                                                      onPressed: () {
+                                                        _controllerCenter
+                                                            .stop();
+                                                        _controllerCenter2
+                                                            .stop();
+                                                        Navigator.of(context)
+                                                            .pop();
+                                                      },
+                                                      child:
+                                                          const Text("Close"),
+                                                    )
+                                                  ],
+                                                ),
+                                                ConfettiWidget(
+                                                  confettiController:
+                                                      _controllerCenter2,
+                                                  blastDirectionality:
+                                                      BlastDirectionality
+                                                          .explosive,
+                                                  shouldLoop: true,
+                                                  numberOfParticles: 20,
+                                                  colors: const [
+                                                    Colors.green,
+                                                    Colors.blue,
+                                                    Colors.pink,
+                                                    Colors.orange,
+                                                    Colors.purple
+                                                  ],
+                                                ),
+                                                Positioned(
+                                                  right: MediaQuery.of(context)
+                                                          .size
+                                                          .width /
+                                                      2,
+                                                  left: MediaQuery.of(context)
+                                                          .size
+                                                          .width /
+                                                      2,
+                                                  child: ConfettiWidget(
+                                                    confettiController:
+                                                        _controllerCenter,
+                                                    blastDirectionality:
+                                                        BlastDirectionality
+                                                            .explosive,
+                                                    shouldLoop: true,
+                                                    numberOfParticles: 10,
+                                                    colors: const [
+                                                      Colors.green,
+                                                      Colors.blue,
+                                                      Colors.pink,
+                                                      Colors.orange,
+                                                      Colors.purple
+                                                    ],
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                        );
+                                      },
+                                    );
+                                  }
                                 },
                               ),
                               DragTarget<String>(
@@ -726,25 +932,125 @@ class _Fase2State extends State<Fase2> {
                                   return _amarelos.contains(data);
                                   //return data == _amarelo;
                                 },
-                                onAccept: (data) {
-                                  setState(() {
-                                    if (_amarelos.indexOf(data) == 0) {
-                                      qtdBolinhas = qtdBolinhas + 1;
-                                      _isAmarelo1Dropped = true;
-                                    } else if (_amarelos.indexOf(data) == 1) {
-                                      qtdBolinhas = qtdBolinhas + 1;
-                                      _isAmarelo2Dropped = true;
-                                    } else if (_amarelos.indexOf(data) == 2) {
-                                      qtdBolinhas = qtdBolinhas + 1;
-                                      _isAmarelo3Dropped = true;
-                                    } else if (_amarelos.indexOf(data) == 3) {
-                                      qtdBolinhas = qtdBolinhas + 1;
-                                      _isAmarelo4Dropped = true;
-                                    } else if (_amarelos.indexOf(data) == 4) {
-                                      qtdBolinhas = qtdBolinhas + 1;
-                                      _isAmarelo5Dropped = true;
-                                    }
-                                  });
+                                onAccept: (data) async {
+                                  setState(
+                                    () {
+                                      if (_amarelos.indexOf(data) == 0) {
+                                        qtdBolinhas = qtdBolinhas + 1;
+                                        _isAmarelo1Dropped = true;
+                                      } else if (_amarelos.indexOf(data) == 1) {
+                                        qtdBolinhas = qtdBolinhas + 1;
+                                        _isAmarelo2Dropped = true;
+                                      } else if (_amarelos.indexOf(data) == 2) {
+                                        qtdBolinhas = qtdBolinhas + 1;
+                                        _isAmarelo3Dropped = true;
+                                      } else if (_amarelos.indexOf(data) == 3) {
+                                        qtdBolinhas = qtdBolinhas + 1;
+                                        _isAmarelo4Dropped = true;
+                                      } else if (_amarelos.indexOf(data) == 4) {
+                                        qtdBolinhas = qtdBolinhas + 1;
+                                        _isAmarelo5Dropped = true;
+                                      }
+                                    },
+                                  );
+                                  if (qtdBolinhas == 15) {
+                                    _controllerCenter.play();
+                                    _controllerCenter2.play();
+                                    await showDialog(
+                                      context: context,
+                                      builder: (BuildContext context) {
+                                        return Dialog(
+                                          child: Container(
+                                            height: 300,
+                                            child: Stack(
+                                              children: [
+                                                Column(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment
+                                                          .spaceBetween,
+                                                  children: [
+                                                    Image.asset(
+                                                      'assets/imagens/porco_parab.png',
+                                                      height:
+                                                          MediaQuery.of(context)
+                                                                  .size
+                                                                  .height *
+                                                              0.45,
+                                                      width:
+                                                          MediaQuery.of(context)
+                                                                  .size
+                                                                  .width *
+                                                              0.5,
+                                                    ),
+                                                    const Text(
+                                                      "Você Conseguiu!!!",
+                                                      style: TextStyle(
+                                                        fontSize: 20,
+                                                      ),
+                                                    ),
+                                                    ElevatedButton(
+                                                      onPressed: () {
+                                                        _controllerCenter
+                                                            .stop();
+                                                        _controllerCenter2
+                                                            .stop();
+                                                        Navigator.of(context)
+                                                            .pop();
+                                                      },
+                                                      child:
+                                                          const Text("Close"),
+                                                    )
+                                                  ],
+                                                ),
+                                                ConfettiWidget(
+                                                  confettiController:
+                                                      _controllerCenter2,
+                                                  blastDirectionality:
+                                                      BlastDirectionality
+                                                          .explosive,
+                                                  shouldLoop: true,
+                                                  numberOfParticles: 20,
+                                                  colors: const [
+                                                    Colors.green,
+                                                    Colors.blue,
+                                                    Colors.pink,
+                                                    Colors.orange,
+                                                    Colors.purple
+                                                  ],
+                                                ),
+                                                Positioned(
+                                                  right: MediaQuery.of(context)
+                                                          .size
+                                                          .width /
+                                                      2,
+                                                  left: MediaQuery.of(context)
+                                                          .size
+                                                          .width /
+                                                      2,
+                                                  child: ConfettiWidget(
+                                                    confettiController:
+                                                        _controllerCenter,
+                                                    blastDirectionality:
+                                                        BlastDirectionality
+                                                            .explosive,
+                                                    shouldLoop: true,
+                                                    numberOfParticles: 10,
+                                                    colors: const [
+                                                      Colors.green,
+                                                      Colors.blue,
+                                                      Colors.pink,
+                                                      Colors.orange,
+                                                      Colors.purple
+                                                    ],
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                        );
+                                      },
+                                    );
+                                  }
                                 },
                               ),
                             ]),

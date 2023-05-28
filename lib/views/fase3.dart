@@ -1,6 +1,7 @@
 // import 'package:flutter/material.dart';
 
 import 'package:audioplayers/audioplayers.dart';
+import 'package:confetti/confetti.dart';
 import 'package:flutter/material.dart';
 import 'globals.dart' as globals;
 
@@ -14,6 +15,11 @@ class Fase3 extends StatefulWidget {
 GlobalKey<ScaffoldState> scaffoldKey = GlobalKey();
 
 final _player = AudioPlayer();
+
+ConfettiController _controllerCenter =
+    ConfettiController(duration: const Duration(seconds: 10));
+ConfettiController _controllerCenter2 =
+    ConfettiController(duration: const Duration(seconds: 10));
 
 class _Fase3State extends State<Fase3> {
   final List<String> _papels = ["P1", "P2", "P3"];
@@ -68,7 +74,9 @@ class _Fase3State extends State<Fase3> {
             flexibleSpace: GestureDetector(
                 onTap: () {
                   if (qtdLixo == 14) {
-                    globals.fase = 4;
+                    if (globals.fase < 4) {
+                      globals.fase = 4;
+                    }
                     Navigator.pushNamed(context, "/home");
                   }
                 },
@@ -602,7 +610,7 @@ class _Fase3State extends State<Fase3> {
                                   return _papels.contains(data);
                                   //return data == _azul;
                                 },
-                                onAccept: (data) {
+                                onAccept: (data) async {
                                   setState(() {
                                     if (_papels.indexOf(data) == 0) {
                                       qtdLixo = qtdLixo + 1;
@@ -615,6 +623,104 @@ class _Fase3State extends State<Fase3> {
                                       _isPapel3Dropped = true;
                                     }
                                   });
+                                  if (qtdLixo == 14) {
+                                    _controllerCenter.play();
+                                    _controllerCenter2.play();
+                                    await showDialog(
+                                      context: context,
+                                      builder: (BuildContext context) {
+                                        return Dialog(
+                                          child: Container(
+                                            height: 300,
+                                            child: Stack(
+                                              children: [
+                                                Column(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment
+                                                          .spaceBetween,
+                                                  children: [
+                                                    Image.asset(
+                                                      'assets/imagens/guaxinim_parab.png',
+                                                      height:
+                                                          MediaQuery.of(context)
+                                                                  .size
+                                                                  .height *
+                                                              0.45,
+                                                      width:
+                                                          MediaQuery.of(context)
+                                                                  .size
+                                                                  .width *
+                                                              0.5,
+                                                    ),
+                                                    const Text(
+                                                      "Você Conseguiu!!!",
+                                                      style: TextStyle(
+                                                        fontSize: 20,
+                                                      ),
+                                                    ),
+                                                    ElevatedButton(
+                                                      onPressed: () {
+                                                        _controllerCenter
+                                                            .stop();
+                                                        _controllerCenter2
+                                                            .stop();
+                                                        Navigator.of(context)
+                                                            .pop();
+                                                      },
+                                                      child:
+                                                          const Text("Close"),
+                                                    )
+                                                  ],
+                                                ),
+                                                ConfettiWidget(
+                                                  confettiController:
+                                                      _controllerCenter2,
+                                                  blastDirectionality:
+                                                      BlastDirectionality
+                                                          .explosive,
+                                                  shouldLoop: true,
+                                                  numberOfParticles: 20,
+                                                  colors: const [
+                                                    Colors.green,
+                                                    Colors.blue,
+                                                    Colors.pink,
+                                                    Colors.orange,
+                                                    Colors.purple
+                                                  ],
+                                                ),
+                                                Positioned(
+                                                  right: MediaQuery.of(context)
+                                                          .size
+                                                          .width /
+                                                      2,
+                                                  left: MediaQuery.of(context)
+                                                          .size
+                                                          .width /
+                                                      2,
+                                                  child: ConfettiWidget(
+                                                    confettiController:
+                                                        _controllerCenter,
+                                                    blastDirectionality:
+                                                        BlastDirectionality
+                                                            .explosive,
+                                                    shouldLoop: true,
+                                                    numberOfParticles: 10,
+                                                    colors: const [
+                                                      Colors.green,
+                                                      Colors.blue,
+                                                      Colors.pink,
+                                                      Colors.orange,
+                                                      Colors.purple
+                                                    ],
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                        );
+                                      },
+                                    );
+                                  }
                                 },
                               ),
                               DragTarget<String>(
@@ -645,7 +751,7 @@ class _Fase3State extends State<Fase3> {
                                   //return data == _vermelho;
                                   return _plasticos.contains(data);
                                 },
-                                onAccept: (data) {
+                                onAccept: (data) async {
                                   setState(() {
                                     if (_plasticos.indexOf(data) == 0) {
                                       qtdLixo = qtdLixo + 1;
@@ -655,6 +761,104 @@ class _Fase3State extends State<Fase3> {
                                       _isPlastico2Dropped = true;
                                     }
                                   });
+                                  if (qtdLixo == 14) {
+                                    _controllerCenter.play();
+                                    _controllerCenter2.play();
+                                    await showDialog(
+                                      context: context,
+                                      builder: (BuildContext context) {
+                                        return Dialog(
+                                          child: Container(
+                                            height: 300,
+                                            child: Stack(
+                                              children: [
+                                                Column(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment
+                                                          .spaceBetween,
+                                                  children: [
+                                                    Image.asset(
+                                                      'assets/imagens/guaxinim_parab.png',
+                                                      height:
+                                                          MediaQuery.of(context)
+                                                                  .size
+                                                                  .height *
+                                                              0.45,
+                                                      width:
+                                                          MediaQuery.of(context)
+                                                                  .size
+                                                                  .width *
+                                                              0.5,
+                                                    ),
+                                                    const Text(
+                                                      "Você Conseguiu!!!",
+                                                      style: TextStyle(
+                                                        fontSize: 20,
+                                                      ),
+                                                    ),
+                                                    ElevatedButton(
+                                                      onPressed: () {
+                                                        _controllerCenter
+                                                            .stop();
+                                                        _controllerCenter2
+                                                            .stop();
+                                                        Navigator.of(context)
+                                                            .pop();
+                                                      },
+                                                      child:
+                                                          const Text("Close"),
+                                                    )
+                                                  ],
+                                                ),
+                                                ConfettiWidget(
+                                                  confettiController:
+                                                      _controllerCenter2,
+                                                  blastDirectionality:
+                                                      BlastDirectionality
+                                                          .explosive,
+                                                  shouldLoop: true,
+                                                  numberOfParticles: 20,
+                                                  colors: const [
+                                                    Colors.green,
+                                                    Colors.blue,
+                                                    Colors.pink,
+                                                    Colors.orange,
+                                                    Colors.purple
+                                                  ],
+                                                ),
+                                                Positioned(
+                                                  right: MediaQuery.of(context)
+                                                          .size
+                                                          .width /
+                                                      2,
+                                                  left: MediaQuery.of(context)
+                                                          .size
+                                                          .width /
+                                                      2,
+                                                  child: ConfettiWidget(
+                                                    confettiController:
+                                                        _controllerCenter,
+                                                    blastDirectionality:
+                                                        BlastDirectionality
+                                                            .explosive,
+                                                    shouldLoop: true,
+                                                    numberOfParticles: 10,
+                                                    colors: const [
+                                                      Colors.green,
+                                                      Colors.blue,
+                                                      Colors.pink,
+                                                      Colors.orange,
+                                                      Colors.purple
+                                                    ],
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                        );
+                                      },
+                                    );
+                                  }
                                 },
                               ),
                               DragTarget<String>(
@@ -685,7 +889,7 @@ class _Fase3State extends State<Fase3> {
                                   return _vidros.contains(data);
                                   //return data == _amarelo;
                                 },
-                                onAccept: (data) {
+                                onAccept: (data) async {
                                   setState(() {
                                     if (_vidros.indexOf(data) == 0) {
                                       qtdLixo = qtdLixo + 1;
@@ -698,6 +902,104 @@ class _Fase3State extends State<Fase3> {
                                       _isVidro3Dropped = true;
                                     }
                                   });
+                                  if (qtdLixo == 14) {
+                                    _controllerCenter.play();
+                                    _controllerCenter2.play();
+                                    await showDialog(
+                                      context: context,
+                                      builder: (BuildContext context) {
+                                        return Dialog(
+                                          child: Container(
+                                            height: 300,
+                                            child: Stack(
+                                              children: [
+                                                Column(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment
+                                                          .spaceBetween,
+                                                  children: [
+                                                    Image.asset(
+                                                      'assets/imagens/guaxinim_parab.png',
+                                                      height:
+                                                          MediaQuery.of(context)
+                                                                  .size
+                                                                  .height *
+                                                              0.45,
+                                                      width:
+                                                          MediaQuery.of(context)
+                                                                  .size
+                                                                  .width *
+                                                              0.5,
+                                                    ),
+                                                    const Text(
+                                                      "Você Conseguiu!!!",
+                                                      style: TextStyle(
+                                                        fontSize: 20,
+                                                      ),
+                                                    ),
+                                                    ElevatedButton(
+                                                      onPressed: () {
+                                                        _controllerCenter
+                                                            .stop();
+                                                        _controllerCenter2
+                                                            .stop();
+                                                        Navigator.of(context)
+                                                            .pop();
+                                                      },
+                                                      child:
+                                                          const Text("Close"),
+                                                    )
+                                                  ],
+                                                ),
+                                                ConfettiWidget(
+                                                  confettiController:
+                                                      _controllerCenter2,
+                                                  blastDirectionality:
+                                                      BlastDirectionality
+                                                          .explosive,
+                                                  shouldLoop: true,
+                                                  numberOfParticles: 20,
+                                                  colors: const [
+                                                    Colors.green,
+                                                    Colors.blue,
+                                                    Colors.pink,
+                                                    Colors.orange,
+                                                    Colors.purple
+                                                  ],
+                                                ),
+                                                Positioned(
+                                                  right: MediaQuery.of(context)
+                                                          .size
+                                                          .width /
+                                                      2,
+                                                  left: MediaQuery.of(context)
+                                                          .size
+                                                          .width /
+                                                      2,
+                                                  child: ConfettiWidget(
+                                                    confettiController:
+                                                        _controllerCenter,
+                                                    blastDirectionality:
+                                                        BlastDirectionality
+                                                            .explosive,
+                                                    shouldLoop: true,
+                                                    numberOfParticles: 10,
+                                                    colors: const [
+                                                      Colors.green,
+                                                      Colors.blue,
+                                                      Colors.pink,
+                                                      Colors.orange,
+                                                      Colors.purple
+                                                    ],
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                        );
+                                      },
+                                    );
+                                  }
                                 },
                               ),
                               DragTarget<String>(
@@ -728,7 +1030,7 @@ class _Fase3State extends State<Fase3> {
                                   return _metals.contains(data);
                                   //return data == _amarelo;
                                 },
-                                onAccept: (data) {
+                                onAccept: (data) async {
                                   setState(() {
                                     if (_metals.indexOf(data) == 0) {
                                       qtdLixo = qtdLixo + 1;
@@ -741,6 +1043,104 @@ class _Fase3State extends State<Fase3> {
                                       _isMetal3Dropped = true;
                                     }
                                   });
+                                  if (qtdLixo == 14) {
+                                    _controllerCenter.play();
+                                    _controllerCenter2.play();
+                                    await showDialog(
+                                      context: context,
+                                      builder: (BuildContext context) {
+                                        return Dialog(
+                                          child: Container(
+                                            height: 300,
+                                            child: Stack(
+                                              children: [
+                                                Column(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment
+                                                          .spaceBetween,
+                                                  children: [
+                                                    Image.asset(
+                                                      'assets/imagens/guaxinim_parab.png',
+                                                      height:
+                                                          MediaQuery.of(context)
+                                                                  .size
+                                                                  .height *
+                                                              0.45,
+                                                      width:
+                                                          MediaQuery.of(context)
+                                                                  .size
+                                                                  .width *
+                                                              0.5,
+                                                    ),
+                                                    const Text(
+                                                      "Você Conseguiu!!!",
+                                                      style: TextStyle(
+                                                        fontSize: 20,
+                                                      ),
+                                                    ),
+                                                    ElevatedButton(
+                                                      onPressed: () {
+                                                        _controllerCenter
+                                                            .stop();
+                                                        _controllerCenter2
+                                                            .stop();
+                                                        Navigator.of(context)
+                                                            .pop();
+                                                      },
+                                                      child:
+                                                          const Text("Close"),
+                                                    )
+                                                  ],
+                                                ),
+                                                ConfettiWidget(
+                                                  confettiController:
+                                                      _controllerCenter2,
+                                                  blastDirectionality:
+                                                      BlastDirectionality
+                                                          .explosive,
+                                                  shouldLoop: true,
+                                                  numberOfParticles: 20,
+                                                  colors: const [
+                                                    Colors.green,
+                                                    Colors.blue,
+                                                    Colors.pink,
+                                                    Colors.orange,
+                                                    Colors.purple
+                                                  ],
+                                                ),
+                                                Positioned(
+                                                  right: MediaQuery.of(context)
+                                                          .size
+                                                          .width /
+                                                      2,
+                                                  left: MediaQuery.of(context)
+                                                          .size
+                                                          .width /
+                                                      2,
+                                                  child: ConfettiWidget(
+                                                    confettiController:
+                                                        _controllerCenter,
+                                                    blastDirectionality:
+                                                        BlastDirectionality
+                                                            .explosive,
+                                                    shouldLoop: true,
+                                                    numberOfParticles: 10,
+                                                    colors: const [
+                                                      Colors.green,
+                                                      Colors.blue,
+                                                      Colors.pink,
+                                                      Colors.orange,
+                                                      Colors.purple
+                                                    ],
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                        );
+                                      },
+                                    );
+                                  }
                                 },
                               ),
                               DragTarget<String>(
@@ -771,7 +1171,7 @@ class _Fase3State extends State<Fase3> {
                                   return _organicos.contains(data);
                                   //return data == _amarelo;
                                 },
-                                onAccept: (data) {
+                                onAccept: (data) async {
                                   setState(() {
                                     if (_organicos.indexOf(data) == 0) {
                                       qtdLixo = qtdLixo + 1;
@@ -784,6 +1184,104 @@ class _Fase3State extends State<Fase3> {
                                       _isOrganico3Dropped = true;
                                     }
                                   });
+                                  if (qtdLixo == 14) {
+                                    _controllerCenter.play();
+                                    _controllerCenter2.play();
+                                    await showDialog(
+                                      context: context,
+                                      builder: (BuildContext context) {
+                                        return Dialog(
+                                          child: Container(
+                                            height: 300,
+                                            child: Stack(
+                                              children: [
+                                                Column(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment
+                                                          .spaceBetween,
+                                                  children: [
+                                                    Image.asset(
+                                                      'assets/imagens/guaxinim_parab.png',
+                                                      height:
+                                                          MediaQuery.of(context)
+                                                                  .size
+                                                                  .height *
+                                                              0.45,
+                                                      width:
+                                                          MediaQuery.of(context)
+                                                                  .size
+                                                                  .width *
+                                                              0.5,
+                                                    ),
+                                                    const Text(
+                                                      "Você Conseguiu!!!",
+                                                      style: TextStyle(
+                                                        fontSize: 20,
+                                                      ),
+                                                    ),
+                                                    ElevatedButton(
+                                                      onPressed: () {
+                                                        _controllerCenter
+                                                            .stop();
+                                                        _controllerCenter2
+                                                            .stop();
+                                                        Navigator.of(context)
+                                                            .pop();
+                                                      },
+                                                      child:
+                                                          const Text("Close"),
+                                                    )
+                                                  ],
+                                                ),
+                                                ConfettiWidget(
+                                                  confettiController:
+                                                      _controllerCenter2,
+                                                  blastDirectionality:
+                                                      BlastDirectionality
+                                                          .explosive,
+                                                  shouldLoop: true,
+                                                  numberOfParticles: 20,
+                                                  colors: const [
+                                                    Colors.green,
+                                                    Colors.blue,
+                                                    Colors.pink,
+                                                    Colors.orange,
+                                                    Colors.purple
+                                                  ],
+                                                ),
+                                                Positioned(
+                                                  right: MediaQuery.of(context)
+                                                          .size
+                                                          .width /
+                                                      2,
+                                                  left: MediaQuery.of(context)
+                                                          .size
+                                                          .width /
+                                                      2,
+                                                  child: ConfettiWidget(
+                                                    confettiController:
+                                                        _controllerCenter,
+                                                    blastDirectionality:
+                                                        BlastDirectionality
+                                                            .explosive,
+                                                    shouldLoop: true,
+                                                    numberOfParticles: 10,
+                                                    colors: const [
+                                                      Colors.green,
+                                                      Colors.blue,
+                                                      Colors.pink,
+                                                      Colors.orange,
+                                                      Colors.purple
+                                                    ],
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                        );
+                                      },
+                                    );
+                                  }
                                 },
                               ),
                             ]),

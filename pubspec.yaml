@@ -35,6 +35,7 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
   audioplayers: ^4.0.1
+  confetti: ^0.7.0
   
 
 dev_dependencies:
@@ -127,6 +128,10 @@ flutter:
     - assets/imagens/lapis_3.png
     - assets/imagens/lapis_4.png
     - assets/imagens/preenchimento_num.png
+    - assets/imagens/guaxinim_parab.png
+    - assets/imagens/dino_parab.png
+    - assets/imagens/porco_parab.png
+    - assets/imagens/preguiça_parab.png
     - assets/audios/musica_bg.mp3
     - assets/audios/error.mp3
     - assets/audios/acertou.wav
