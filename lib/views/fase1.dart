@@ -88,6 +88,11 @@ class _Fase1State extends State<Fase1> {
         ),
         body: Stack(children: <Widget>[
           Container(
+            decoration: const BoxDecoration(
+              image: DecorationImage(
+                  image: AssetImage("assets/imagens/dino_fundo.jpg"),
+                  fit: BoxFit.fitWidth),
+            ),
             margin: const EdgeInsets.all(15.0),
             padding: const EdgeInsets.all(3.0),
             //alignment: Alignment.center,
