@@ -104,107 +104,116 @@ class _HomeState extends State<Home>
             ),
             body: Stack(
               children: <Widget>[
-                GridView.count(
-                  crossAxisCount: 2,
-                  childAspectRatio:
-                      MediaQuery.of(context).size.aspectRatio * 1.3,
-                  scrollDirection: Axis.vertical,
-                  children: [
-                    GestureDetector(
-                      onTap: () {
-                        Navigator.pushNamed(context, "/fase_1_intro");
-                      },
-                      child: Column(
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.all(10.0),
-                            child: Image.asset(
-                              fase_1,
-                              width: wid * 0.25,
-                              height: hei * 0.25,
-                              scale: 1,
-                            ),
-                          ),
-                          const Text(
-                            'DINO',
-                            style: TextStyle(fontSize: 18),
-                          ),
-                        ],
-                      ),
+                Container(
+                  decoration: const BoxDecoration(
+                    image: DecorationImage(
+                      image: AssetImage("assets/imagens/main-fundo.jpg"),
+                      opacity: .3,
+                      fit: BoxFit.cover,
                     ),
-                    GestureDetector(
-                      onTap: () {
-                        if (globals.fase >= 2) {
-                          Navigator.pushNamed(context, "/fase_2_intro");
-                        }
-                      },
-                      child: Column(
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.all(10.0),
-                            child: Image.asset(
-                              fase_2,
-                              width: wid * 0.25,
-                              height: hei * 0.25,
-                              scale: 1,
+                  ),
+                  child: GridView.count(
+                    crossAxisCount: 2,
+                    childAspectRatio:
+                        MediaQuery.of(context).size.aspectRatio * 1.3,
+                    scrollDirection: Axis.vertical,
+                    children: [
+                      GestureDetector(
+                        onTap: () {
+                          Navigator.pushNamed(context, "/fase_1_intro");
+                        },
+                        child: Column(
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.all(10.0),
+                              child: Image.asset(
+                                fase_1,
+                                width: wid * 0.25,
+                                height: hei * 0.25,
+                                scale: 1,
+                              ),
                             ),
-                          ),
-                          const Text(
-                            'BATOTA',
-                            style: TextStyle(fontSize: 18),
-                          ),
-                        ],
-                      ),
-                    ),
-                    GestureDetector(
-                      onTap: () {
-                        if (globals.fase >= 3) {
-                          Navigator.pushNamed(context, "/fase_3_intro");
-                        }
-                      },
-                      child: Column(
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.all(10.0),
-                            child: Image.asset(
-                              fase_3,
-                              width: wid * 0.25,
-                              height: hei * 0.25,
-                              scale: 1,
+                            const Text(
+                              'DINO',
+                              style: TextStyle(fontSize: 18),
                             ),
-                          ),
-                          const Text(
-                            'CACAU',
-                            style: TextStyle(fontSize: 18),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
-                    ),
-                    GestureDetector(
-                      onTap: () {
-                        if (globals.fase >= 4) {
-                          Navigator.pushNamed(context, "/fase_4_intro");
-                        }
-                      },
-                      child: Column(
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.all(10.0),
-                            child: Image.asset(
-                              fase_4,
-                              width: wid * 0.25,
-                              height: hei * 0.25,
-                              scale: 1,
+                      GestureDetector(
+                        onTap: () {
+                          if (globals.fase >= 2) {
+                            Navigator.pushNamed(context, "/fase_2_intro");
+                          }
+                        },
+                        child: Column(
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.all(10.0),
+                              child: Image.asset(
+                                fase_2,
+                                width: wid * 0.25,
+                                height: hei * 0.25,
+                                scale: 1,
+                              ),
                             ),
-                          ),
-                          const Text(
-                            'SONECA',
-                            style: TextStyle(fontSize: 18),
-                          ),
-                        ],
+                            const Text(
+                              'BATOTA',
+                              style: TextStyle(fontSize: 18),
+                            ),
+                          ],
+                        ),
                       ),
-                    ),
-                  ],
+                      GestureDetector(
+                        onTap: () {
+                          if (globals.fase >= 3) {
+                            Navigator.pushNamed(context, "/fase_3_intro");
+                          }
+                        },
+                        child: Column(
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.all(10.0),
+                              child: Image.asset(
+                                fase_3,
+                                width: wid * 0.25,
+                                height: hei * 0.25,
+                                scale: 1,
+                              ),
+                            ),
+                            const Text(
+                              'CACAU',
+                              style: TextStyle(fontSize: 18),
+                            ),
+                          ],
+                        ),
+                      ),
+                      GestureDetector(
+                        onTap: () {
+                          if (globals.fase >= 4) {
+                            Navigator.pushNamed(context, "/fase_4_intro");
+                          }
+                        },
+                        child: Column(
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.all(10.0),
+                              child: Image.asset(
+                                fase_4,
+                                width: wid * 0.25,
+                                height: hei * 0.25,
+                                scale: 1,
+                              ),
+                            ),
+                            const Text(
+                              'SONECA',
+                              style: TextStyle(fontSize: 18),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
                 )
               ],
             ),

@@ -93,8 +93,15 @@ class _Fase3State extends State<Fase3> {
                 ))),
         body: Stack(children: <Widget>[
           Container(
-            margin: const EdgeInsets.all(10.0),
+            // margin: const EdgeInsets.all(10.0),
             padding: const EdgeInsets.all(3.0),
+            decoration: const BoxDecoration(
+                  image: DecorationImage(
+                    image: AssetImage("assets/imagens/guaxinim-fundo.jpg"),
+                    opacity: .22,
+                    fit: BoxFit.cover,
+                  ),
+                ),
             //alignment: Alignment.center,
             child: Column(children: <Widget>[
               Align(

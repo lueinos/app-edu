@@ -93,6 +93,11 @@ flutter:
         - assets/imagens/formas_fundo.png
         - assets/imagens/guaxinim_dialog.png
         - assets/imagens/lixos_fundo.png
+        - assets/imagens/dino_fundo.jpg
+        - assets/imagens/preguiça-fundo.jpg
+        - assets/imagens/porco-fundo.jpg
+        - assets/imagens/guaxinim-fundo.jpg
+        - assets/imagens/main-fundo.jpg
         - assets/imagens/seta_fase_3.png
         - assets/imagens/lixeira_metal.png
         - assets/imagens/lixeira_organicos.png

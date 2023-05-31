@@ -88,8 +88,15 @@ class _Fase2State extends State<Fase2> {
                 ))),
         body: Stack(children: <Widget>[
           Container(
-            margin: const EdgeInsets.all(10.0),
-            padding: const EdgeInsets.all(3.0),
+            // margin: const EdgeInsets.all(10.0),
+            // padding: const EdgeInsets.all(3.0),
+            decoration: const BoxDecoration(
+                  image: DecorationImage(
+                    image: AssetImage("assets/imagens/porco-fundo.jpg"),
+                    opacity: .3,
+                    fit: BoxFit.cover,
+                  ),
+                ),
             child: Column(children: <Widget>[
               Align(
                   alignment: Alignment.topCenter,
@@ -97,6 +104,7 @@ class _Fase2State extends State<Fase2> {
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
                       SingleChildScrollView(
+                        padding: const EdgeInsets.fromLTRB(0, 10, 0, 0),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [

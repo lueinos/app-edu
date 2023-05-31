@@ -73,8 +73,15 @@ class _Fase4State extends State<Fase4> {
                 ))),
         body: Stack(children: <Widget>[
           Container(
-            margin: const EdgeInsets.all(10.0),
+            // margin: const EdgeInsets.all(10.0),
             padding: const EdgeInsets.all(3.0),
+            decoration: const BoxDecoration(
+                  image: DecorationImage(
+                    image: AssetImage("assets/imagens/preguiça-fundo.jpg"),
+                    opacity: .3,
+                    fit: BoxFit.cover,
+                  ),
+                ),
             //alignment: Alignment.center,
             child: Column(children: <Widget>[
               Align(
@@ -89,6 +96,7 @@ class _Fase4State extends State<Fase4> {
                             Container(
                               margin: const EdgeInsets.all(15.0),
                               padding: const EdgeInsets.all(3.0),
+                              
                               decoration: BoxDecoration(
                                   border: Border.all(color: Colors.black),
                                   borderRadius:
